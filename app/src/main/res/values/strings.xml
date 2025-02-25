@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Application name -->
+    <string name="app_name">Text Copier</string>
+    
+    <!-- Name shown in share menu -->
+    <string name="share_menu_name">Copy Text</string>
+    
+    <!-- Main screen instruction text -->
+    <string name="instruction_text">To copy text, tap \'Copy Text\' from the share menu</string>
+    
+    <!-- Toast message shown when text is copied -->
+    <string name="text_copied">Text copied to clipboard</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Uygulama adı -->
+    <string name="app_name">Metin Kopyalayıcı</string>
+    
+    <!-- Paylaş menüsünde görünecek isim -->
+    <string name="share_menu_name">Metni Kopyala</string>
+    
+    <!-- Ana ekran açıklama metni -->
+    <string name="instruction_text">Bir metin kopyalamak için paylaş kısmından \'Metni Kopyala\' seçeneğine basınız</string>
+    
+    <!-- Metin kopyalandığında gösterilen bildirim mesajı -->
+    <string name="text_copied">Metin panoya kopyalandı</string>
+</resources>
