@@ -11,4 +11,29 @@
     
     <!-- Metin kopyalandığında gösterilen bildirim mesajı -->
     <string name="text_copied">Metin panoya kopyalandı</string>
+
+    <!-- Kimlik doğrulama ekranı -->
+    <string name="email">E-posta</string>
+    <string name="password">Şifre</string>
+    <string name="name">Ad</string>
+    <string name="sign_in">Giriş Yap</string>
+    <string name="sign_up">Kayıt Ol</string>
+    <string name="create_account">Hesap Oluştur</string>
+    <string name="already_have_account">Zaten hesabınız var mı? Giriş yapın</string>
+    <string name="sign_out">Çıkış Yap</string>
+    <string name="error_auth">Kimlik doğrulama hatası</string>
+    <string name="error_network">Ağ hatası</string>
+    <string name="premium_feature">Bu özellik sadece üyeler için kullanılabilir</string>
+
+    <!-- Çıkış yapma dialogu -->
+    <string name="sign_out_title">Çıkış Yap</string>
+    <string name="sign_out_message">Hesabınızdan çıkış yapmak istediğinize emin misiniz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+
+    <!-- Hesap dialogu -->
+    <string name="account_title">Hesap Bilgileri</string>
+    <string name="account_name">Ad: %s</string>
+    <string name="account_email">E-posta: %s</string>
+    <string name="my_account">Hesabım</string>
 </resources>

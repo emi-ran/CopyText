@@ -11,4 +11,29 @@
     
     <!-- Toast message shown when text is copied -->
     <string name="text_copied">Text copied to clipboard</string>
+
+    <!-- Authentication screen -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_account">Already have an account? Sign in</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="error_auth">Authentication error</string>
+    <string name="error_network">Network error</string>
+    <string name="premium_feature">This feature is only available for members</string>
+
+    <!-- Sign out dialog -->
+    <string name="sign_out_title">Sign Out</string>
+    <string name="sign_out_message">Are you sure you want to sign out of your account?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- Account dialog -->
+    <string name="account_title">Account Information</string>
+    <string name="account_name">Name: %s</string>
+    <string name="account_email">Email: %s</string>
+    <string name="my_account">My Account</string>
 </resources>
