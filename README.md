@@ -1,56 +1,59 @@
-# Metni Kopyala
+# Copy Text
 
-Metni Kopyala, Android cihazlarda metin paylaşımını hızlı ve kolay bir şekilde panoya kopyalamanızı sağlayan basit bir uygulamadır.
+[Türkçe](README.tr.md) | English
 
-## Özellikler
+A simple and efficient Android application that allows you to copy text from any application using the share menu.
 
-- Herhangi bir uygulamadan metin paylaşımı yapabilme
-- Uygulama arayüzü açılmadan hızlı kopyalama
-- Şık animasyonlu ana ekran
-- Minimal ve kullanıcı dostu arayüz
+## Features
 
-## Nasıl Kullanılır?
+- Copy text from any application via share menu
+- Clean and modern user interface with animations
+- Edge-to-edge display support
+- Multilingual support (English & Turkish)
+- Minimal and efficient design
 
-1. Herhangi bir uygulamada metni seçin
-2. Paylaş butonuna tıklayın
-3. "Metni Kopyala" seçeneğini seçin
-4. Metin otomatik olarak panoya kopyalanacaktır
+## Screenshots
 
-## Teknik Detaylar
+[Screenshots will be added]
 
-- Minimum Android Sürümü: Android 7.0 (API Level 24)
-- Hedef Android Sürümü: Android 14 (API Level 34)
-- Kullanılan Kütüphaneler:
-  - Lottie (Animasyonlar için)
-  - AndroidX AppCompat
-  - Material Design Components
+## Installation
 
-## Geliştirme
+You can download the app from:
 
-### Gereksinimler
+- [Google Play Store] (Coming soon)
+- [GitHub Releases](https://github.com/emi-ran/CopyText/releases)
 
-- Android Studio Hedgehog | 2023.1.1 veya üzeri
-- JDK 11
-- Android SDK
+## Building from Source
 
-### Projeyi Yerel Ortama Alma
+### Prerequisites
+
+- Android Studio Arctic Fox or newer
+- JDK 8 or newer
+- Android SDK with minimum API level 24
+
+### Clone the Repository
 
 ```bash
-git clone https://github.com/[kullanıcı-adı]/CopyText.git
+git clone https://github.com/emi-ran/CopyText.git
 cd CopyText
 ```
 
-### Build Etme
+### Build
 
-1. Android Studio'yu açın
-2. "Open an existing Android Studio project" seçeneğini seçin
-3. Projeyi seçin ve açın
-4. "Build > Make Project" seçeneğini kullanarak projeyi derleyin
+1. Open the project in Android Studio
+2. Wait for Gradle sync to complete
+3. Build the project:
+   - For debug build: `./gradlew assembleDebug`
+   - For release build: `./gradlew assembleRelease`
 
-## Lisans
+## Contributing
 
-Bu proje [MIT lisansı](LICENSE) altında lisanslanmıştır.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## İletişim
+## License
 
-Herhangi bir soru veya öneriniz için [issues](https://github.com/[kullanıcı-adı]/CopyText/issues) bölümünü kullanabilirsiniz.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Project Link: [https://github.com/emi-ran/CopyText](https://github.com/emi-ran/CopyText)
