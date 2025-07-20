@@ -10,14 +10,22 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/historyButton"
+        style="@style/TextButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history_title"
+        app:icon="@drawable/ic_history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/accountButton"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/TextButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/my_account"
         app:icon="@drawable/ic_account_circle"
-        app:iconTint="?android:textColorPrimary"
-        android:textColor="?android:textColorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +52,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/instruction_text"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

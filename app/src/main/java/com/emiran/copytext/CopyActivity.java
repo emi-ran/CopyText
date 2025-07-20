@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.emiran.copytext.model.ClipboardItem;
+import com.emiran.copytext.repository.ClipboardRepository;
+
 /**
  * CopyActivity - A transparent activity that handles text sharing intents.
  * This activity doesn't show any UI, it just copies the shared text to clipboard
@@ -18,15 +21,23 @@ import android.widget.Toast;
  */
 public class CopyActivity extends Activity {
     
+    private ClipboardRepository repository;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        repository = new ClipboardRepository(this);
         
         // Paylaşılan metni al
         Intent intent = getIntent();
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         
         if (sharedText != null) {
+            // Metni yerel veritabanına kaydet
+            ClipboardItem item = new ClipboardItem(sharedText, false);
+            repository.insert(item);
+            
             copyTextToClipboard(sharedText);
             showCopiedMessage();
         }
@@ -51,5 +62,13 @@ public class CopyActivity extends Activity {
      */
     private void showCopiedMessage() {
         Toast.makeText(this, getString(R.string.text_copied), Toast.LENGTH_SHORT).show();
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (repository != null) {
+            repository.shutdown();
+        }
     }
 }

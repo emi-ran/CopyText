@@ -30,10 +30,46 @@
     <string name="sign_out_message">Hesabınızdan çıkış yapmak istediğinize emin misiniz?</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
+    <string name="ok">Tamam</string>
 
     <!-- Hesap dialogu -->
     <string name="account_title">Hesap Bilgileri</string>
     <string name="account_name">Ad: %s</string>
     <string name="account_email">E-posta: %s</string>
     <string name="my_account">Hesabım</string>
+    
+    <!-- Geçmiş -->
+    <string name="history_title">Geçmiş</string>
+    <string name="no_history_items">Henüz kopyalanan metin bulunmuyor</string>
+    <string name="clear_history">Geçmişi Temizle</string>
+    <string name="clear_history_confirm">Geçmişi temizlemek istediğinizden emin misiniz? Sabitlenen öğeler korunacak.</string>
+    <string name="text_copied_again">Metin tekrar kopyalandı</string>
+    <string name="item_deleted">Öğe silindi</string>
+    <string name="history_cleared">Geçmiş temizlendi</string>
+    <string name="delete_selected_title">Seçili Öğeleri Sil</string>
+    <string name="delete_selected_message">%d öğeyi silmek istediğinizden emin misiniz?</string>
+    <string name="selected_items_deleted">Seçili öğeler silindi</string>
+    <string name="delete_selected">Sil</string>
+    
+    <!-- Pin functionality -->
+    <string name="item_pinned">Öğe sabitlendi</string>
+    <string name="item_unpinned">Öğe sabitleme kaldırıldı</string>
+    
+    <!-- Edit and Rename -->
+    <string name="edit">Düzenle</string>
+    <string name="rename">Yeniden Adlandır</string>
+    <string name="edit_text">Metni Düzenle</string>
+    <string name="rename_item">Öğeyi Yeniden Adlandır</string>
+    <string name="enter_title">Başlık girin</string>
+    <string name="enter_text">Metin girin</string>
+    <string name="save">Kaydet</string>
+    <string name="cancel">İptal</string>
+    <string name="item_updated">Öğe güncellendi</string>
+    <string name="item_renamed">Öğe yeniden adlandırıldı</string>
+    
+    <!-- Search -->
+    <string name="search">Ara</string>
+    <string name="search_hint">Başlık veya içerik ara...</string>
+    <string name="no_search_results">Arama sonucu bulunamadı</string>
+    <string name="search_mode_exited">Arama modundan çıkıldı</string>
 </resources>

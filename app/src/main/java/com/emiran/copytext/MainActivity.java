@@ -16,11 +16,14 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.emiran.copytext.repository.ClipboardRepository;
 import com.emiran.copytext.util.FirebaseHelper;
+import com.emiran.copytext.model.ClipboardItem;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,14 +36,20 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class MainActivity extends AppCompatActivity {
     private FirebaseHelper firebaseHelper;
+    private ClipboardRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Karanlık tema ayarla
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         
         firebaseHelper = new FirebaseHelper(this);
+        repository = new ClipboardRepository(this);
         
         // Kullanıcı giriş kontrolü
         FirebaseUser currentUser = firebaseHelper.getCurrentUser();
@@ -52,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
         
         // Set up edge-to-edge display
         setupEdgeToEdge();
+        
+        // Geçmiş butonunu ayarla
+        MaterialButton historyButton = findViewById(R.id.historyButton);
+        historyButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
+        });
         
         // Hesap butonunu ayarla
         MaterialButton accountButton = findViewById(R.id.accountButton);
@@ -84,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.account_title)
                 .setView(dialogView)
-                .setPositiveButton(R.string.no, null)
+                .setPositiveButton(R.string.ok, null)
                 .show();
     }
 
@@ -141,24 +157,28 @@ public class MainActivity extends AppCompatActivity {
     private void handleSharedText(Intent intent) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
-            // Metni Firebase'e kaydet
-            firebaseHelper.saveClipboardItem(sharedText)
-                    .addOnSuccessListener(documentReference -> {
-                        // Metni panoya kopyala
-                        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                        ClipData clip = ClipData.newPlainText("Shared Text", sharedText);
-                        clipboard.setPrimaryClip(clip);
-                        
-                        // Kullanıcıya bilgi ver
-                        Toast.makeText(this, getString(R.string.text_copied), Toast.LENGTH_SHORT).show();
-                        
-                        // Activity'yi kapat
-                        finish();
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(this, R.string.error_network, Toast.LENGTH_SHORT).show();
-                        finish();
-                    });
+            // Metni yerel veritabanına kaydet
+            ClipboardItem item = new ClipboardItem(sharedText, false);
+            repository.insert(item);
+            
+            // Metni panoya kopyala
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("Shared Text", sharedText);
+            clipboard.setPrimaryClip(clip);
+            
+            // Kullanıcıya bilgi ver
+            Toast.makeText(this, getString(R.string.text_copied), Toast.LENGTH_SHORT).show();
+            
+            // Activity'yi kapat
+            finish();
+        }
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (repository != null) {
+            repository.shutdown();
         }
     }
 }

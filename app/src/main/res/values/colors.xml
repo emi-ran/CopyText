@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Modern Material Design 3 Color Palette -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Primary Colors -->
+    <color name="primary">#FF6750A4</color>
+    <color name="primary_container">#FFEADDFF</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="on_primary_container">#FF21005D</color>
+    
+    <!-- Secondary Colors -->
+    <color name="secondary">#FF625B71</color>
+    <color name="secondary_container">#FFE8DEF8</color>
+    <color name="on_secondary">#FFFFFFFF</color>
+    <color name="on_secondary_container">#FF1D192B</color>
+    
+    <!-- Tertiary Colors -->
+    <color name="tertiary">#FF7D5260</color>
+    <color name="tertiary_container">#FFFFD8E4</color>
+    <color name="on_tertiary">#FFFFFFFF</color>
+    <color name="on_tertiary_container">#FF31111D</color>
+    
+    <!-- Error Colors -->
+    <color name="error">#FFBA1A1A</color>
+    <color name="error_container">#FFFFDAD6</color>
+    <color name="on_error">#FFFFFFFF</color>
+    <color name="on_error_container">#FF410002</color>
+    
+    <!-- Neutral Colors -->
+    <color name="background">#FFFFFBFF</color>
+    <color name="on_background">#FF1C1B1F</color>
+    <color name="surface">#FFFFFBFF</color>
+    <color name="on_surface">#FF1C1B1F</color>
+    <color name="surface_variant">#FFE7E0EC</color>
+    <color name="on_surface_variant">#FF49454F</color>
+    <color name="outline">#FF79747E</color>
+    <color name="outline_variant">#FFCAC4D0</color>
+    
+    <!-- Additional Colors -->
+    <color name="surface_bright">#FFFFFBFF</color>
+    <color name="surface_dim">#FFDED8E1</color>
+    <color name="scrim">#FF000000</color>
+    <color name="inverse_surface">#FF313033</color>
+    <color name="inverse_on_surface">#FFF4EFF4</color>
+    <color name="inverse_primary">#FFD0BCFF</color>
+    <color name="shadow">#FF000000</color>
+    <color name="surface_tint">#FF6750A4</color>
+    <color name="outline_light">#FF79747E</color>
 </resources>
