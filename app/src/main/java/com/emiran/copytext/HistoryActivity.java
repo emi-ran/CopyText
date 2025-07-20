@@ -238,6 +238,10 @@ public class HistoryActivity extends AppCompatActivity {
     
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
         if (item.getItemId() == R.id.action_clear_history) {
             showClearHistoryDialog();
             return true;

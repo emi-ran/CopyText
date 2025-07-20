@@ -12,32 +12,6 @@
     <!-- Toast message shown when text is copied -->
     <string name="text_copied">Text copied to clipboard</string>
 
-    <!-- Authentication screen -->
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="name">Name</string>
-    <string name="sign_in">Sign In</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="create_account">Create Account</string>
-    <string name="already_have_account">Already have an account? Sign in</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="error_auth">Authentication error</string>
-    <string name="error_network">Network error</string>
-    <string name="premium_feature">This feature is only available for members</string>
-
-    <!-- Sign out dialog -->
-    <string name="sign_out_title">Sign Out</string>
-    <string name="sign_out_message">Are you sure you want to sign out of your account?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="ok">OK</string>
-
-    <!-- Account dialog -->
-    <string name="account_title">Account Information</string>
-    <string name="account_name">Name: %s</string>
-    <string name="account_email">Email: %s</string>
-    <string name="my_account">My Account</string>
-    
     <!-- History -->
     <string name="history_title">History</string>
     <string name="no_history_items">No copied text yet</string>
@@ -56,20 +30,24 @@
     <string name="item_unpinned">Item unpinned</string>
     
     <!-- Edit and Rename -->
-    <string name="edit">Düzenle</string>
-    <string name="rename">Yeniden Adlandır</string>
-    <string name="edit_text">Metni Düzenle</string>
-    <string name="rename_item">Öğeyi Yeniden Adlandır</string>
-    <string name="enter_title">Başlık girin</string>
-    <string name="enter_text">Metin girin</string>
-    <string name="save">Kaydet</string>
-    <string name="cancel">İptal</string>
-    <string name="item_updated">Öğe güncellendi</string>
-    <string name="item_renamed">Öğe yeniden adlandırıldı</string>
+    <string name="edit">Edit</string>
+    <string name="rename">Rename</string>
+    <string name="edit_text">Edit Text</string>
+    <string name="rename_item">Rename Item</string>
+    <string name="enter_title">Enter title</string>
+    <string name="enter_text">Enter text</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="item_updated">Item updated</string>
+    <string name="item_renamed">Item renamed</string>
     
     <!-- Search -->
-    <string name="search">Ara</string>
-    <string name="search_hint">Başlık veya içerik ara...</string>
-    <string name="no_search_results">Arama sonucu bulunamadı</string>
-    <string name="search_mode_exited">Arama modundan çıkıldı</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search title or content...</string>
+    <string name="no_search_results">No search results found</string>
+    <string name="search_mode_exited">Search mode exited</string>
+    <!-- Language selection -->
+    <string name="language">Language</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

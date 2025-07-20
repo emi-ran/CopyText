@@ -4,13 +4,18 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.PopupMenu;
+import java.util.Locale;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -22,10 +27,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.emiran.copytext.repository.ClipboardRepository;
-import com.emiran.copytext.util.FirebaseHelper;
-import com.emiran.copytext.model.ClipboardItem;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseUser;
 
 /**
  * MainActivity - The main entry point of the application.
@@ -35,11 +37,11 @@ import com.google.firebase.auth.FirebaseUser;
  * @version 1.0
  */
 public class MainActivity extends AppCompatActivity {
-    private FirebaseHelper firebaseHelper;
     private ClipboardRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applySavedLocale(); // setContentView'dan önce çağrıldı
         super.onCreate(savedInstanceState);
         
         // Karanlık tema ayarla
@@ -48,16 +50,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         
-        firebaseHelper = new FirebaseHelper(this);
         repository = new ClipboardRepository(this);
         
-        // Kullanıcı giriş kontrolü
-        FirebaseUser currentUser = firebaseHelper.getCurrentUser();
-        if (currentUser == null) {
-            startActivity(new Intent(this, AuthActivity.class));
-            finish();
-            return;
-        }
+        // Kullanıcı giriş kontrolü ve firebase ile ilgili kodlar kaldırıldı.
         
         // Set up edge-to-edge display
         setupEdgeToEdge();
@@ -68,42 +63,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, HistoryActivity.class);
             startActivity(intent);
         });
+
+        MaterialButton languageButton = findViewById(R.id.languageButton);
+        languageButton.setOnClickListener(v -> showLanguageMenu(languageButton));
         
-        // Hesap butonunu ayarla
-        MaterialButton accountButton = findViewById(R.id.accountButton);
-        accountButton.setOnClickListener(v -> showAccountDialog());
         
         // Paylaşılan metni kontrol et
         handleSharedText(getIntent());
     }
-
-    private void showAccountDialog() {
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_account, null);
-        
-        // Kullanıcı bilgilerini al
-        firebaseHelper.getUserProfile().addOnSuccessListener(user -> {
-            if (user != null) {
-                TextView nameText = dialogView.findViewById(R.id.nameText);
-                TextView emailText = dialogView.findViewById(R.id.emailText);
-                
-                nameText.setText(getString(R.string.account_name, user.getName()));
-                emailText.setText(getString(R.string.account_email, user.getEmail()));
-            }
-        });
-
-        // Çıkış yapma butonunu ayarla
-        MaterialButton signOutButton = dialogView.findViewById(R.id.signOutButton);
-        signOutButton.setOnClickListener(v -> {
-            showSignOutDialog();
-        });
-
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.account_title)
-                .setView(dialogView)
-                .setPositiveButton(R.string.ok, null)
-                .show();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -112,30 +79,63 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_sign_out) {
-            showSignOutDialog();
-            return true;
-        }
+        // Sadece diğer menü işlemleri kalacak, sign out kaldırılacak
         return super.onOptionsItemSelected(item);
     }
 
-    private void showSignOutDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.sign_out_title)
-                .setMessage(R.string.sign_out_message)
-                .setPositiveButton(R.string.yes, (dialog, which) -> {
-                    firebaseHelper.signOut();
-                    startActivity(new Intent(this, AuthActivity.class));
-                    finish();
-                })
-                .setNegativeButton(R.string.no, null)
-                .show();
-    }
+    // showSignOutDialog fonksiyonu tamamen kaldırıldı
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleSharedText(intent);
+    }
+
+    private void showLanguageMenu(View anchor) {
+        PopupMenu popup = new PopupMenu(this, anchor);
+        popup.getMenu().add("Türkçe");
+        popup.getMenu().add("English");
+        popup.setOnMenuItemClickListener(item -> {
+            if (item.getTitle().equals("Türkçe")) {
+                setLocale("tr");
+            } else if (item.getTitle().equals("English")) {
+                setLocale("en");
+            }
+            return true;
+        });
+        popup.show();
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        // Tercihi kaydet
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.edit().putString("app_locale", lang).apply();
+        recreate();
+    }
+
+    private void applySavedLocale() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String lang = prefs.getString("app_locale", null);
+        if (lang == null) {
+            // Cihaz dili Türkçe veya İngilizce ise onu kullan, yoksa İngilizce
+            String deviceLang = Locale.getDefault().getLanguage();
+            if (deviceLang.equals("tr")) {
+                lang = "tr";
+            } else {
+                lang = "en";
+            }
+        }
+        // Eğer lang kaydedilmişse cihaz diline bakmadan onu uygula
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     /**
@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
             // Metni yerel veritabanına kaydet
-            ClipboardItem item = new ClipboardItem(sharedText, false);
-            repository.insert(item);
+            // ClipboardItem item = new ClipboardItem(sharedText, false); // Removed as per edit hint
+            // repository.insert(item);
             
             // Metni panoya kopyala
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
