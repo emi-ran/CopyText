@@ -51,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
         repository = new ClipboardRepository(this);
-        
-        // Kullanıcı giriş kontrolü ve firebase ile ilgili kodlar kaldırıldı.
-        
+                
         // Set up edge-to-edge display
         setupEdgeToEdge();
         
